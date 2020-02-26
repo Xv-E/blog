@@ -1,5 +1,6 @@
 package com.waylau.spring.boot.blog.repository.es;
 
+import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.repository.ElasticsearchRepository;
@@ -10,8 +11,9 @@ import com.waylau.spring.boot.blog.domain.es.EsBlog;
  * Blog 存储库.
  * 
  * @since 1.0.0 2017年3月12日
- * @author <a href="https://waylau.com">Way Lau</a> 
+ * @author <a href="https://waylau.com">WayLau</a> 
  */
+@Configuration
 public interface EsBlogRepository extends ElasticsearchRepository<EsBlog, String> {
  
 	/**

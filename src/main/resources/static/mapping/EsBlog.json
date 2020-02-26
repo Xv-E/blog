@@ -1,0 +1,48 @@
+{
+  "EsBlog": {
+    "properties": {
+      "id": {
+        "type": "long"
+      },
+
+      "tags": {
+        "type": "text",
+        "fielddata": true
+        }
+      },
+      "title": {
+        "type": "text",
+        "analyzer": "ik_smart",
+        "search_analyzer": "ik_smart",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "summary": {
+        "type": "text",
+        "analyzer": "ik_smart",
+        "search_analyzer": "ik_smart",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      },
+      "content": {
+        "type": "text",
+        "analyzer": "ik_smart",
+        "search_analyzer": "ik_smart",
+        "fields": {
+          "keyword": {
+            "type": "keyword",
+            "ignore_above": 256
+          }
+        }
+      }
+    }
+  }
+}

@@ -20,6 +20,7 @@ import javax.persistence.OneToOne;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.data.elasticsearch.annotations.Document;
 
 import com.github.rjeschke.txtmark.Processor;
 
@@ -30,6 +31,7 @@ import com.github.rjeschke.txtmark.Processor;
  * @author <a href="https://waylau.com">Way Lau</a>
  */
 @Entity // 实体
+//@Document(indexName = "blog", type = "blog")
 public class Blog implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -88,6 +90,13 @@ public class Blog implements Serializable {
 	@JoinTable(name = "blog_vote", joinColumns = @JoinColumn(name = "blog_id", referencedColumnName = "id"), 
 		inverseJoinColumns = @JoinColumn(name = "vote_id", referencedColumnName = "id"))
 	private List<Vote> votes;
+	
+	@OneToOne(cascade = CascadeType.DETACH, fetch = FetchType.LAZY)
+	@JoinColumn(name="catalog_id")
+	private Catalog catalog;
+
+	@Column(name="tags", length = 100) 
+	private String tags;  // 标签
 	
 	protected Blog() {
 		// TODO Auto-generated constructor stub
@@ -236,4 +245,17 @@ public class Blog implements Serializable {
 		this.votes = votes;
 		this.voteSize = this.votes.size();
 	}
+	public String getTags() {
+		return tags;
+	}
+	public void setTags(String tags) {
+		this.tags = tags;
+	}
+	public Catalog getCatalog() {
+		return catalog;
+	}
+	public void setCatalog(Catalog catalog) {
+		this.catalog = catalog;
+	}
+
 }
